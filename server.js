@@ -3,6 +3,7 @@ const express = require('express')
 
 // creates an instance of express called app
 const app = express()
+app.use(express.json());
 
 const mockUserData = [
     {name : 'Mark'},
@@ -21,7 +22,6 @@ app.get('/users/:id', function(req, res) {
     console.log(req.params.id)
     res.json({
         success : true,
-        message : 'got one user',
         user : req.params.id
     })
 })
@@ -42,6 +42,22 @@ app.post('/login', function(req, res) {
         res.json({
             success : false,
             message : 'password and username do not match'
+        })
+    }
+})
+
+app.post('/users', function(req, res){
+    const username = req.body.username
+    const password = req.body.password
+    const newUser = {
+        username,
+        password
+    }
+    if (newUser.username && newUser.password) {
+        res.json({
+            success : true,
+            message : 'new user created',
+            user : newUser
         })
     }
 })
