@@ -7,7 +7,7 @@ const app = express();
 
 // starts the server on port 8080
 app.listen(8080, function(){
-    console.log("sever is running");
+    console.log("server is running");
 });
 
 
